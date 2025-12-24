@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 style="color:#6f42c1; margin-bottom:20px;">{{ category.name }}</h2>
+
+<div class="row g-4">
+    {% for n in news %}
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+            <img src="{{ n.photo.url }}" class="card-img-top" alt="{{ n.title }}" style="height:200px; object-fit:cover;">
+            <div class="card-body">
+                <h5 class="card-title">{{ n.title }}</h5>
+                <p class="card-text">{{ n.content|truncatewords:20 }}</p>
+                <a href="{% url 'news_details' n.id %}" class="btn btn-primary" style="background-color:#6f42c1; border:none;">Devamını Oku</a>
+            </div>
+            <div class="card-footer text-muted" style="background-color:#f0e6ff;">
+                {{ n.date }}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>Bu kategoriye ait haber bulunmamaktadır.</p>
+    {% endfor %}
+</div>
+{% endblock %}

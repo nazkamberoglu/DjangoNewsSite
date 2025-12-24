@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .news-card {
+    background: linear-gradient(135deg, #f5e6ff, #ede1ff);
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .news-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 25px 25px 0 0;
+  }
+
+  .news-content {
+    padding: 2rem;
+  }
+
+  .news-title {
+    font-weight: 700;
+    color: #3b005c;
+    margin-bottom: 1rem;
+  }
+
+  .news-text {
+    color: #4a4a4a;
+    line-height: 1.7;
+  }
+
+  .news-date {
+    color: #6c6c6c;
+    font-size: 0.9rem;
+  }
+
+  .back-btn {
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .back-btn:hover {
+    background-color: #520b8c;
+  }
+</style>
+
+<div class="container my-5">
+  <div class="news-card mx-auto" style="max-width: 900px;">
+    <img src="{{ news.photo.url }}" alt="{{ news.title }}" class="news-image">
+
+    <div class="news-content">
+      <h2 class="news-title">{{ news.title }}</h2>
+   <p class="news-text" style="white-space: pre-line;">{{ news.content }}</p>
+      <hr>
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <span class="news-date">{{ news.date }}</span>
+        <a href="{% url 'main_page' %}" class="back-btn text-decoration-none">← Geri Dön</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

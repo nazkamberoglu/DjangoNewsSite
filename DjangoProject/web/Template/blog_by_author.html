@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+
+
+    <a href="{% url 'main_page' %}" class="btn mb-4 custom-btn">
+         ← Geri Dön
+    </a>
+
+    {% for blog in blogs %}
+    <div class="d-flex flex-column flex-sm-row align-items-center mb-3">
+        {% if blog.image %}
+        <img src="{{ blog.image.url }}" class="rounded-circle me-3 mb-2 mb-sm-0" style="width:70px; height:70px; object-fit:cover; border:3px solid #9b5de5;">
+        {% endif %}
+        <h3 style="color:#4b0082;">{{ blog.author }}'ın Blog Yazısı</h3>
+    </div>
+
+    <div class="card p-4 mb-5" style="background-color:#e6d6ff; border-radius:20px; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+        <p style="white-space: pre-line; font-size:16px; color:#333; line-height:1.6;">{{ blog.content }}</p>
+    </div>
+
+    {% empty %}
+    <p class="text-center text-muted fst-italic mt-5">Bu yazarın henüz blog yazısı yok.</p>
+    {% endfor %}
+</div>
+
+
+<style>
+.custom-btn {
+    border: 2px solid #9b5de5;
+    color: #9b5de5;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.custom-btn:hover {
+    background-color: #9b5de5;
+    color: white;
+    text-decoration: none;
+}
+</style>
+
+{% endblock %}
